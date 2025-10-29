@@ -1,0 +1,227 @@
+/* ======== RESET E BASE ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg, #1b2735, #090a0f);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px 15px;
+}
+
+/* ======== CONTAINER PRINCIPAL ======== */
+.container {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 900px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ======== TÍTULOS ======== */
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00c6ff;
+}
+
+h2 {
+    margin-top: 30px;
+    font-size: 1.2rem;
+    color: #9ddaff;
+}
+
+/* ======== FORMULÁRIOS ======== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"],
+input[type="date"] {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+input[type="text"]:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid #00c6ff;
+}
+
+input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 6px;
+}
+
+label {
+    font-size: 0.95rem;
+    color: #b3e0ff;
+}
+
+button {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.03);
+    background: linear-gradient(135deg, #00e6e6, #0099ff);
+}
+
+/* ======== TABELA ======== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+thead {
+    background-color: rgba(0, 198, 255, 0.15);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ======== BOTÕES DE AÇÃO ======== */
+.acoes a {
+    margin-right: 10px;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.btn-excluir {
+    background-color: #ff4d4d;
+}
+
+.btn-excluir:hover {
+    background-color: #ff6666;
+}
+
+.btn-concluir {
+    background-color: #00c853;
+}
+
+.btn-concluir:hover {
+    background-color: #00e676;
+}
+
+.btn-editar {
+    background-color: #2979ff;
+}
+
+.btn-editar:hover {
+    background-color: #448aff;
+}
+
+.btn-voltar {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #777;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.btn-voltar:hover {
+    background-color: #999;
+}
+
+/* ======== PAGINAÇÃO ======== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 10px;
+}
+
+.pagination a {
+    text-decoration: none;
+    background-color: rgba(0, 198, 255, 0.2);
+    padding: 8px 14px;
+    border-radius: 6px;
+    color: #00c6ff;
+    transition: 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #00c6ff;
+    color: #fff;
+}
+
+/* ======== RESPONSIVIDADE ======== */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    tr {
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+        display: none;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        text-align: right;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #9ddaff;
+        text-align: left;
+    }
+}
+/* FIM DO ARQUIVO CSS */
