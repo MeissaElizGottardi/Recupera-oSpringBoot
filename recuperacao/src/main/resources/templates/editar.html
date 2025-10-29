@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Filme</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Editar Filme</h1>
+
+    <form th:action="@{/atualizar/{id}(id=${filme.id})}" th:object="${filme}" method="post">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" th:field="*{titulo}" required />
+
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" th:field="*{descricao}" />
+
+        <label>
+            <input type="checkbox" th:field="*{assistido}" /> Assistido
+        </label>
+
+        <br><br>
+        <button type="submit">Salvar Alterações</button>
+    </form>
+
+    <br>
+    <a th:href="@{/}" class="btn-voltar">⬅ Voltar à lista</a>
+</div>
+</body>
+</html>

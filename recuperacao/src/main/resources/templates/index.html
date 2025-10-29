@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Filmes</title>
+    <!-- Importa o arquivo CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+    <!-- Container principal da página -->
+    <div class="container">
+
+        <!-- Título principal -->
+        <h1>Meus Filmes</h1>
+
+        <!-- Seção para adicionar nova tarefa -->
+        <h2>Adicionar novo Filme</h2>
+
+        <!-- Formulário de cadastro de nova tarefa -->
+        <form th:action="@{/adicionar}" th:object="${novoFilme}" method="post">
+            <!-- Campo para o título da tarefa -->
+            <input 
+                type="text"
+                th:field="*{titulo}"
+                placeholder="Título do filme"
+                required
+            />
+
+            <!-- Campo para a descrição da tarefa -->
+            <input 
+                type="text"
+                th:field="*{descricao}"
+                placeholder="Descrição do Filme"
+            />
+
+            <!-- Botão para adicionar tarefa -->
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <hr>
+
+        <!-- Seção de tarefas cadastradas -->
+        <h2>Filmes cadastrados</h2>
+
+        <!-- Tabela que lista as tarefas -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Mensagem exibida se não houver tarefas -->
+                <tr th:if="${paginaFilmes.empty}">
+                    <td colspan="5" style="text-align: center;">
+                        Nenhum filme cadastrado...
+                    </td>
+                </tr>
+
+                <!-- Loop para exibir cada tarefa -->
+                <tr th:each="filme : ${paginaFilmes.content}">
+                    <td th:text="${filme.titulo}">Título do filme</td>
+                    <td th:text="${filme.descricao}">Descrição dp Filme</td>
+                    <td th:text="${filme.assistido} ? 'Assistido' : 'Pendente'">Pendente</td>
+                    <td th:text="${filme.dataLancamento}">Data de Lançamento</td>
+
+                    <!-- Coluna de ações -->
+                    <td class="acoes">
+                        <!-- Link para excluir a tarefa -->
+                        <a class="btn-excluir" th:href="@{/excluir/{id}(id=${filme.id})}">Excluir</a>
+
+                        <!-- Link para marcar como concluída (só aparece se ainda não estiver concluída) -->
+                        <a class="btn-concluir"
+                           th:if="${!filme.assistido}"
+                           th:href="@{/assistido/{id}(id=${filme.id})}">
+                           ✅ Concluir
+                        </a>
+
+                        <a class="btn-editar"
+                           th:href="@{/editar/{id}(id=${filme.id})}">
+                           ✏️ Editar
+                    </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Paginação -->
+        <div class="pagination">
+            <a th:if="${paginaFilmes.number > 0}" th:href="@{/filmes(pagina=${paginaFilmes.number - 1})}">Anterior</a>
+
+            <a th:if="${paginaFilmes.number + 1 lt paginaFilmes.totalPages}" 
+            th:href="@{/filmes(pagina=${paginaFilmes.number + 1})}">
+                Próxima
+        </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
